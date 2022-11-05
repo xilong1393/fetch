@@ -55,9 +55,7 @@ There are four endpoints. The purposes of them are as their names suggests.
    ]
 
 
-
-more implementation details:
-
+More implementation details:
 Assumption: It's assumed that the points transaction for each payer happens in an chronological order. 
 The cursor: the cursor of each payer's balance summary points to the pointbalance that's currently in the treeset. The pointbalance before the cursor is zero.
 Error handling: 
