@@ -8,7 +8,7 @@ Three steps to run the app:
 
 Now the app is started on http://localhost:3000
 You can use postman to call it
-There are four endpoints. The purposes of them are as their names suggests.
+There are four endpoints. The purposes of them are as their names suggest.
 
 1. http://localhost:3000/v1/balances/all 
    This is a httpget endpoint. You don't need to pass any parameter to use it.
