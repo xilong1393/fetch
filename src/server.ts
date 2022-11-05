@@ -1,5 +1,6 @@
 import express, { Application } from 'express'
 import { Server } from 'http'
+import { logger } from './helper/winston-logger';
 import { Config } from './middleware/config-middleware';
 import { GlobalErrorHandler } from './middleware/error-handler-middleware';
 import { Routes } from './middleware/routes-middleware';
@@ -31,7 +32,7 @@ export class FetchAwardsServer {
         this.securityMiddleware(this.app)
         this.routeMiddleware(this.app)
         this.globalErrorHandler(this.app)
-        const server: Server = this.app.listen(3000, () => console.log('server is up'))
+        const server: Server = this.app.listen(3000, () => logger.info('server is up'))
     }
 
 }
