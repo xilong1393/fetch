@@ -5,6 +5,8 @@ import PointEvent from '../model/point-event';
 import * as _ from "lodash";
 import { TreeSet } from 'tstl';
 import PointBalance from '../model/point-balance';
+import { UserService } from '../service/user-service';
+import { logger } from '../helper/winston-logger';
 export class Routes {
     private app: Application;
     private router: Router;
@@ -74,6 +76,28 @@ export class Routes {
             try {
                 const pointEvents: PointEvent[] = req.body
                 const result = await new PointService().handlePointsTransactions(pointEvents)
+                res.send(result)
+            } catch (error) {
+                next(error)
+            }
+        });
+
+
+        this.router.post('/user/addUser', async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const user: IUser = req.body
+                const result = await new UserService().addUser(user)
+                logger.info(`added user: ${result.name}`)
+                res.send(result)
+            } catch (error) {
+                next(error)
+            }
+        });
+
+        this.router.get('/user/getAllUsers', async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const result = await new UserService().getAllUsers()
+                logger.info(`get all users size: ${result.length}`)
                 res.send(result)
             } catch (error) {
                 next(error)

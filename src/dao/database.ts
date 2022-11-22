@@ -6,7 +6,7 @@ import { connect } from "http2";
 export default class Database {
 
     connect = () => {
-        mongoose.connect('mongodb+srv://xilong1393:AQ3Yr2LJpPlWI1f2@cluster0.oaffwqx.mongodb.net/test')
+        mongoose.connect('mongodb+srv://xilong1393:AQ3Yr2LJpPlWI1f2@cluster0.oaffwqx.mongodb.net/sample_airbnb')
             .then(() => {
                 logger.info("successfully connected to database")
             })
