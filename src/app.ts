@@ -2,6 +2,6 @@ import { FetchAwardsServer } from './server';
 import Database from './dao/database';
 
 const database = new Database();
-database.setup();
+database.connect();
 const server = new FetchAwardsServer();
 server.start();

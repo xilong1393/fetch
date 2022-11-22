@@ -13,6 +13,16 @@ export default class PointService {
         return mymap
     }
 
+    test = async () => {
+        try {
+            throw new Error("test")
+        } catch (error) {
+            throw error
+        }
+       
+        return mymap
+    }
+
     consume = async (number: number) => {
         if (number > mymap.total) {
             throw new NotEnoughBalanceError("not enough balance")

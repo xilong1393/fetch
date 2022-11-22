@@ -17,6 +17,7 @@
     "hashmap": "^2.4.0",
     "http-status-codes": "^2.2.0",
     "lodash": "^4.17.21",
+    "mongoose": "^6.7.2",
     "tstl": "^2.5.12",
     "winston": "^3.8.2"
   },

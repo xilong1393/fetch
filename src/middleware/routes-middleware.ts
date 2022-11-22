@@ -3,6 +3,8 @@ import PointService from '../service/point-service';
 import PointToConsume from '../model/point-to-consume';
 import PointEvent from '../model/point-event';
 import * as _ from "lodash";
+import { TreeSet } from 'tstl';
+import PointBalance from '../model/point-balance';
 export class Routes {
     private app: Application;
     private router: Router;
@@ -20,6 +22,23 @@ export class Routes {
             try {
                 const mymap = await new PointService().getAll()
                 res.send(mymap.serialize())
+            } catch (error) {
+                next(error)
+            }
+        });
+
+        this.router.get('/balances/test', async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const treeset: TreeSet<PointBalance> = new TreeSet<PointBalance>((a, b) => a.lastUpdated.getTime() != b.lastUpdated.getTime() ? a.lastUpdated < b.lastUpdated : a.payer < b.payer)
+
+                treeset.insert(new PointBalance("test2", 100, new Date("2022-10-28T10:00:00Z")))
+                treeset.insert(new PointBalance("test1", 120, new Date("2022-10-28T10:00:00Z")))
+                treeset.insert(new PointBalance("test3", 90, new Date("2022-11-28T10:00:00Z")))
+                treeset.insert(new PointBalance("test3", 90, new Date("2022-11-03T10:00:00Z")))
+                treeset.insert(new PointBalance("test1", 100, new Date("2022-11-04T10:00:00Z")))
+                // treeset.erase(new PointBalance("test2", 100, new Date("2022-10-28T10:00:00Z")))
+                const result = treeset.has(new PointBalance("test2", 200, new Date("2022-10-28T10:00:00Z")))
+                res.send(result)
             } catch (error) {
                 next(error)
             }
