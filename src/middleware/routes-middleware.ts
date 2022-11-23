@@ -3,10 +3,11 @@ import PointService from '../service/point-service';
 import PointToConsume from '../model/point-to-consume';
 import PointEvent from '../model/point-event';
 import * as _ from "lodash";
-import { TreeSet } from 'tstl';
+import { SystemError, TreeSet } from 'tstl';
 import PointBalance from '../model/point-balance';
 import { UserService } from '../service/user-service';
 import { logger } from '../helper/winston-logger';
+import IUser from '../model/schema/IUser';
 export class Routes {
     private app: Application;
     private router: Router;
@@ -97,6 +98,7 @@ export class Routes {
         this.router.get('/user/getAllUsers', async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await new UserService().getAllUsers()
+                console.log(result)
                 logger.info(`get all users size: ${result.length}`)
                 res.send(result)
             } catch (error) {

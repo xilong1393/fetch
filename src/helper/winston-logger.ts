@@ -4,10 +4,11 @@ const logger =
     winston.createLogger({
         transports: [
             new winston.transports.Console(),
+            new winston.transports.File({ filename: 'logs/combined.log' })
         ],
         format: winston.format.combine(
             winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
-            winston.format.printf((info) => {
+            winston.format.printf((info:any) => {
                 return JSON.stringify({
                     level: info.level,
                     timestamp: info.timestamp,

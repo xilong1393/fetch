@@ -1,4 +1,5 @@
 import { UserDao } from '../dao/user-dao'
+import IUser from '../model/schema/IUser'
 
 export class UserService {
 

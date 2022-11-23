@@ -1,4 +1,5 @@
 import { logger } from "../helper/winston-logger"
+import IUser from "../model/schema/IUser"
 import { User } from "../model/schema/User"
 
 export class UserDao {
