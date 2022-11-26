@@ -6,15 +6,12 @@ const logger =
             new winston.transports.Console(),
             new winston.transports.File({ filename: 'logs/combined.log' })
         ],
+        level: 'info',
+        exitOnError: false,
         format: winston.format.combine(
-            winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss.SSS' }),
-            winston.format.printf((info:any) => {
-                return JSON.stringify({
-                    level: info.level,
-                    timestamp: info.timestamp,
-                    message: info
-                });
-            }))
+            winston.format.timestamp(),
+            winston.format.json()
+        ),
     })
 
 const childLogger = logger.child({});

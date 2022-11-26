@@ -32,7 +32,7 @@ export class FetchAwardsServer {
         this.securityMiddleware(this.app)
         this.routeMiddleware(this.app)
         this.globalErrorHandler(this.app)
-        const server: Server = this.app.listen(3000, () => logger.info('server is up'))
+        const server: Server = this.app.listen(process.env.port, () => logger.info('server is up'))
     }
 
 }

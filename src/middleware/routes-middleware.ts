@@ -98,7 +98,7 @@ export class Routes {
         this.router.get('/user/getAllUsers', async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const result = await new UserService().getAllUsers()
-                console.log(result)
+                logger.info(result)
                 logger.info(`get all users size: ${result.length}`)
                 res.send(result)
             } catch (error) {
