@@ -1,5 +1,5 @@
 FROM node:16
-EXPOSE 3001
+EXPOSE 3000
 
 RUN mkdir -p /app
 WORKDIR /app
