@@ -4,7 +4,8 @@ const logger =
     winston.createLogger({
         transports: [
             new winston.transports.Console(),
-            new winston.transports.File({ filename: 'logs/combined.log' })
+            // new winston.transports.File({ filename: 'logs/combined.log' }),
+            // new winston.transports.Http({ host: 'localhost', port: 8126 })
         ],
         level: 'info',
         exitOnError: false,
