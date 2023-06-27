@@ -23,6 +23,7 @@ export class Routes {
         // get all balances summary
         this.router.get('/balances/all', async (req: Request, res: Response, next: NextFunction) => {
             try {
+                logger.info("balance all api called!")
                 const mymap = await new PointService().getAll()
                 res.send(mymap.serialize())
             } catch (error) {
