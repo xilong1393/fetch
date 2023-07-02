@@ -33,14 +33,15 @@ export class Routes {
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           logger.info("balance all api called!");
-          for (let i = 0; i < 100; i++) {
-            await new Utility().sleep(5000) 
-            logger.info("i ==== "+ i)
+          for (let i = 0; i < 1000; i++) {
+            await new Utility().sleep(1000);
+            logger.info("i ==== " + i);
           }
           const mymap = await new PointService().getAll();
           res.send(mymap.serialize());
-        } catch (error) {
-          next(error);
+        } catch (error: any) {
+          res.send(error.message);
+          // next(error);
         }
       }
     );
@@ -157,6 +158,19 @@ export class Routes {
           res.send(result);
         } catch (error) {
           next(error);
+        }
+      }
+    );
+
+    this.router.get(
+      "/health",
+      async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          logger.info("heath check called");
+          res.send({ status: "ok" });
+        } catch (error: any) {
+          res.send(error.message);
+          // next(error);
         }
       }
     );

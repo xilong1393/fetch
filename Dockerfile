@@ -5,7 +5,7 @@ RUN mkdir -p /app
 RUN node -v
 WORKDIR /app
 COPY package*.json .
-COPY . .
 RUN npm ci
+COPY . .
 RUN npx tsc
 CMD node dist/app.js
