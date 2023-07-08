@@ -27,10 +27,6 @@ export class Routes {
   private setup() {
     this.app.use("/v1", this.router);
 
-    this.router.get("/health", (req: Request, res: Response, next: NextFunction) => {
-      res.send({ health: "ok" });
-    });
-
     // get all balances summary
     this.router.get(
       "/balances/all",
