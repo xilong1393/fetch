@@ -196,11 +196,24 @@ export class Routes {
     );
 
     this.router.get(
-      "/health",
+      "/health/liveness",
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          logger.info("heath check called");
-          res.send({ status: "ok" });
+          logger.info("liveness check called");
+          res.send({ liveness: "ok" });
+        } catch (error: any) {
+          res.send(error.message);
+          // next(error);
+        }
+      }
+    );
+
+    this.router.get(
+      "/health/readyness",
+      async (req: Request, res: Response, next: NextFunction) => {
+        try {
+          logger.info("readyness check called");
+          res.send({ readyness: "ok" });
         } catch (error: any) {
           res.send(error.message);
           // next(error);
