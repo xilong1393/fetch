@@ -1,10 +1,8 @@
-import "./helper/config"
+import "./helper/config";
 import "./helper/tracer";
 
-import { FetchAwardsServer } from './server';
-import Database from './dao/database';
-
-console.log(process.env.test)
+import { FetchAwardsServer } from "./server";
+import Database from "./dao/database";
 
 const database = new Database();
 database.connect();

@@ -8,3 +8,5 @@ docker build --no-cache --progress=plain -t samtest .
 
 docker run --name fetch -p 3000:3000 -d xilong1393/samtest
 docker run -p 3000:3000 -d samtest
+
+cross-env PORT=3001 npm start
