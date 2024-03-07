@@ -1,5 +1,8 @@
 FROM node:16.10.0-slim
-EXPOSE 3000
+
+ENV port=3000
+
+EXPOSE $port
 
 RUN mkdir -p /app
 RUN node -v

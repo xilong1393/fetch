@@ -5,8 +5,8 @@ docker image push xilong1393/samtest
 
 docker build --no-cache --progress=plain -t samtest .
 
-
 docker run --name fetch -p 3000:3000 -d xilong1393/samtest
-docker run -p 3000:3000 -d samtest
+docker run -e port=3001 --name fetch -p 3001:3001 -d xilong1393/samtest
+docker run -e port=3002 -p 3002:3002 -d samtest
 
-cross-env PORT=3001 npm start
+cross-env port=3001 npm start
