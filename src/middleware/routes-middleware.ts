@@ -15,7 +15,7 @@ import { UserService } from "../service/user-service";
 import { logger } from "../helper/winston-logger";
 import IUser from "../model/schema/IUser";
 import { Utility } from "../helper/utility";
-const multer = require("multer");
+import multer from "multer";
 // const upload = multer({ dest: "./uploads/" });
 const storage = multer.diskStorage({
   destination: (req: any, file: any, cb: any) => {
@@ -43,11 +43,11 @@ export class Routes {
     this.router.post(
       "/upload",
       upload.single("files"),
-      function (req: any, res: Response, next: NextFunction) {
+      function (req: Request, res: Response, next: NextFunction) {
         // req.file is the `avatar` file
         // req.body will hold the text fields, if there were any
-        console.log(req?.file);
-        console.log(req?.body.name);
+        console.log(req.file);
+        console.log(req.body.name);
         res.status(200).json("ok");
       }
     );
