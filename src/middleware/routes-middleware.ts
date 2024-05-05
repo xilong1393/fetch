@@ -234,7 +234,7 @@ export class Routes {
     );
 
     this.router.get(
-      "/health/readyness",
+      "/health/readiness",
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           logger.info("readyness check called");
