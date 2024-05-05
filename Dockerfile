@@ -1,4 +1,4 @@
-FROM node:16.10.0-slim
+FROM node:18.20.2-slim
 
 ENV port=3000
 
