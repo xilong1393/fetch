@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fetch
+  name: fetch-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fetch
+  template:
+    metadata:
+      labels:
+        app: fetch
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+        - name: samtest
+          image: xilong1393/samtest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+
+          env:
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "echo 'Container started!'"]
+          livenessProbe:
+            httpGet:
+              path: /v1/health/liveness
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 50
+          readinessProbe:
+            httpGet:
+              path: /v1/health/readiness
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 50
+            # preStop:
+            #   exec:
+            #     command: ["/bin/sh", "-c", "sleep 120"]
+
+      # - name: envoy
+      #   image: envoyproxy/envoy:v1.19.1
+      #   imagePullPolicy: Always
+      #   ports:
+      #     - containerPort: 5000

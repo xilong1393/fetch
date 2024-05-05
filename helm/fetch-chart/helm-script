@@ -1,0 +1,38 @@
+
+start cmd at minikube folder:
+helm install samtest fetch-chart/ --set service.path=fetch-chart/templates/fetch-service.yaml,deployment.path=fetch-chart/templates/fetch-deployment.yaml
+
+helm upgrade samtest fetch-chart/ --set service.path=fetch-chart/templates/fetch-service.yaml,deployment.path=fetch-chart/templates/fetch-deployment.yaml
+
+helm install --dry-run samtest fetch-chart/ --debug > output.yaml
+
+both works:
+minikube tunnel  works on localhost:80
+kubectl --namespace default port-forward fetch-deployment-8cc7c94d-jrgw8 8080:3000
+
+
+helm install samtest fetch-chart/
+
+helm upgrade samtest fetch-chart/
+
+helm delete samtest
+
+helm package fetch-chart/
+
+python -m http.server --bind 127.0.0.1 8080
+
+helm install samtest localrepo/fetch-chart
+
+helm pull localrepo/fetch-chart
+
+helm install samtest fetch-chart-0.1.0.tgz
+
+minikube service fetch-service
+
+kubectl logs --follow pad_name
+
+kubectl describe pod pod_name
+
+kubectl exec -it pod/fetch-deployment-68c5546656-nmlxx -c samtest bash
+
+kubectl --namespace default port-forward pod/fetch-deployment-68c5546656-kcjhx 8080:80

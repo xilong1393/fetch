@@ -1,0 +1,43 @@
+# Default values for fetch-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+targetSystem: "windows"
+datadog:
+  apiKey: "7c3f06249747efbe5eb029fed8e2b8db"
+  site: "us5.datadoghq.com"
+  kubelet:
+    tlsVerify: false
+  logs:
+    enabled: true
+    containerCollectAll: true
+
+# Datadog Agent with Logs, APM, Processes, and System Probe enabled
+
+# targetSystem: "windows"
+# datadog:
+#   apiKey: "7c3f06249747efbe5eb029fed8e2b8db"
+#   # appKey: <DATADOG_APP_KEY>
+#   # If not using secrets, then use apiKey and appKey instead
+#   apiKeyExistingSecret: <DATADOG_API_KEY_SECRET>
+#   appKeyExistingSecret: <DATADOG_APP_KEY_SECRET>
+#   clusterName: <CLUSTER_NAME>
+#   tags: []
+#   # datadog.kubelet.tlsVerify should be `false` on kind and minikube
+#   # to establish communication with the kubelet
+#   # kubelet:
+#     # tlsVerify: "false"
+#   logs:
+#     enabled: true
+#     containerCollectAll: false
+#     containerCollectUsingFiles: true
+#   apm:
+#     portEnabled: true
+#     socketPath: /var/run/datadog/apm.socket
+#     hostSocketPath: /var/run/datadog/
+#   processAgent:
+#     enabled: true
+#     processCollection: false
+#   systemProbe:
+#     enableTCPQueueLength: false
+#     enableOOMKill: true
+#     collectDNSStats: false

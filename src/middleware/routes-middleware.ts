@@ -210,6 +210,7 @@ export class Routes {
       "/user/getAllUsers",
       async (req: Request, res: Response, next: NextFunction) => {
         try {
+          // throw new Error("est");
           const result = await new UserService().getAllUsers();
           logger.info(result);
           logger.info(`get all users size: ${result.length}`);
